@@ -1,0 +1,17 @@
+pandas==2.2.2
+numpy==1.26.4
+duckdb==0.10.3
+faker==25.2.0
+scipy==1.13.1
+scikit-learn==1.5.0
+plotly==5.22.0
+matplotlib==3.9.0
+kaleido==0.2.1
+streamlit==1.35.0
+nbconvert==7.16.4
+jupyter==1.0.0
+ipykernel==6.29.4
+mlflow==2.13.2
+pytest==8.2.2
+pytest-cov==5.0.0
+ruff==0.4.7
