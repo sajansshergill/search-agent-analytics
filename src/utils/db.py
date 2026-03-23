@@ -17,6 +17,7 @@ from src.utils.config import DB_PATH
 
 logger = logging.getLogger(__name__)
 
+
 @contextmanager
 def get_conn(
     db_path: Path = DB_PATH, read_only: bool = False
@@ -26,16 +27,19 @@ def get_conn(
         yield conn
     finally:
         conn.close()
-        
+
+
 def query(sql: str, db_path: Path = DB_PATH) -> pd.DataFrame:
     with get_conn(db_path, read_only=True) as conn:
         return conn.execute(sql).df()
-    
+
+
 def execute(sql: str, db_path: Path = DB_PATH) -> None:
     with get_conn(db_path) as conn:
         conn.execute(sql)
         logger.debug("Executed: %s", sql[:120])
-        
+
+
 def table_exists(table: str, db_path: Path = DB_PATH) -> bool:
     with get_conn(db_path, read_only=True) as conn:
         result = conn.execute(
@@ -43,7 +47,8 @@ def table_exists(table: str, db_path: Path = DB_PATH) -> bool:
             [table],
         ).fetchone()
         return result[0] > 0
-    
+
+
 def load_df(
     df: pd.DataFrame,
     table: str,
@@ -55,7 +60,8 @@ def load_df(
             conn.execute(f"DROP TABLE IF EXISTS {table}")
         conn.execute(f"CREATE TABLE IF NOT EXISTS {table} AS SELECT * FROM df")
         logger.info("Loaded %d rows into '%s'", len(df), table)
-        
+
+
 def row_count(table: str, db_path: Path = DB_PATH) -> int:
     with get_conn(db_path, read_only=True) as conn:
         return conn.execute(f"SELECT count(*) FROM {table}").fetchone()[0]
