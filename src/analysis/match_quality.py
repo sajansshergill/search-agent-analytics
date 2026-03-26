@@ -26,11 +26,14 @@ def load_recommendations() -> pd.DataFrame:
 
 
 def calibration_summary(df: pd.DataFrame) -> pd.DataFrame:
+    tj = df["true_jaccard"]
+    ms = df["match_score"]
+    ce = df["calibration_error"]
     return pd.DataFrame({
         "metric": ["true_jaccard", "match_score", "calibration_error"],
-        "mean":   [df["true_jaccard"].mean(), df["match_score"].mean(), df["calibration_error"].mean()],
-        "median": [df["true_jaccard"].median(), df["match_score"].median(), df["calibration_error"].median()],
-        "std":    [df["true_jaccard"].std(), df["match_score"].std(), df["calibration_error"].std()],
+        "mean":   [tj.mean(), ms.mean(), ce.mean()],
+        "median": [tj.median(), ms.median(), ce.median()],
+        "std":    [tj.std(), ms.std(), ce.std()],
     }).round(4)
 
 

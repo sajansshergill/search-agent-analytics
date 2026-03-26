@@ -12,7 +12,6 @@ from __future__ import annotations
 import logging
 
 import mlflow
-import numpy as np
 import pandas as pd
 from scipy.stats import chi2
 
@@ -87,6 +86,18 @@ def rolling_drift_score(
                 "dominant_share":   dominant_share,
             })
 
+    drift_cols = [
+        "week",
+        "segment",
+        "n_recs",
+        "chi2_stat",
+        "p_value",
+        "drifted",
+        "dominant_category",
+        "dominant_share",
+    ]
+    if not results:
+        return pd.DataFrame(columns=drift_cols)
     return pd.DataFrame(results).sort_values(["week", "segment"])
 
 

@@ -1,5 +1,7 @@
 .PHONY: install generate load analyze dashboard report test lint clean
 
+export PYTHONPATH := $(CURDIR)
+
 install:
 	pip install -r requirements.txt
 

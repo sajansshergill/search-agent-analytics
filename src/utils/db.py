@@ -6,9 +6,9 @@ DuckDB connection helpers with context manager support.
 from __future__ import annotations
 
 import logging
+from collections.abc import Generator
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Generator
 
 import duckdb
 import pandas as pd

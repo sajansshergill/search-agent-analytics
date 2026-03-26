@@ -13,13 +13,20 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import pandas as pd
-import streamlit as st
 
+import streamlit as st
 from src.analysis import agent_drift, funnel_conversion, match_quality
 from src.reporting.charts import (
-    apply_rate_trend, calibration_error_bar, calibration_scatter,
-    category_bias_heatmap, drift_alert_bars, drift_heatmap,
-    funnel_by_segment_bar, funnel_waterfall, kpi_indicator, score_histogram,
+    apply_rate_trend,
+    calibration_error_bar,
+    calibration_scatter,
+    category_bias_heatmap,
+    drift_alert_bars,
+    drift_heatmap,
+    funnel_by_segment_bar,
+    funnel_waterfall,
+    kpi_indicator,
+    score_histogram,
 )
 from src.utils.config import DB_PATH, EXPERIENCE_LEVELS, JOB_CATEGORIES
 from src.utils.db import table_exists

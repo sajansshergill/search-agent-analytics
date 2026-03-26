@@ -84,9 +84,11 @@ def generate_jobs(n: int) -> pd.DataFrame:
         n_skills        = random.randint(4, 12)
         required_skills = random.sample(SKILLS_POOL, k=n_skills)
         category        = random.choice(JOB_CATEGORIES)
+        title_prefix    = random.choice(["Senior ", "Lead ", "Staff ", ""])
+        title_role      = category.split()[0]
         records.append({
             "job_id":             str(uuid.uuid4()),
-            "title":              f"{random.choice(['Senior ', 'Lead ', 'Staff ', ''])}{category.split()[0]} Engineer",
+            "title":              f"{title_prefix}{title_role} Engineer",
             "category":           category,
             "company":            fake.company(),
             "required_skills":    ",".join(required_skills),
